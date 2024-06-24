@@ -1,0 +1,19 @@
+Generacion de numeros secreto:El programa genera un numero aleatorio 
+entre 1 y 100 al inicio del juego.Este numero es le objetivo que el 
+jugador debe adivinar.
+
+Interfaz de Usuario: La interacción con el usuario se realiza a través
+de la consola. El programa proporciona indicaciones claras para guiar 
+al jugador durante el juego.
+
+Feedback del Juego: Después de cada intento del jugador, el programa 
+ofrece retroalimentación indicando si la suposición fue demasiado alta,
+demasiado baja, o correcta.
+
+Contador de Intentos: El programa lleva un registro del número de 
+intentos realizados por el jugador y muestra esta información al final
+del juego.
+
+Logging (Registro de Eventos): El juego utiliza el módulo logging de 
+Python para registrar eventos importantes, como la generación del 
+número secreto y cada intento del jugador.
