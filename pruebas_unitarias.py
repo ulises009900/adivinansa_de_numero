@@ -1,40 +1,24 @@
-número=0
-while intentosRealizados < 6:
+import unittest
+from logica_2 import revisar_numero, generar_numero
 
-    print('Intenta adivinar.') 
+class TestGuessingGame(unittest.TestCase):
 
-    estimación = input()
+    def test_revisar_numero_correct(self):
+        self.assertEqual(revisar_numero(50, 50), "correcto")
 
-    estimación = int(estimación)
+    def test_revisar_numero_higher(self):
+        self.assertEqual(revisar_numero(50, 40), "mas alto")
 
+    def test_revisar_numero_lower(self):
+        self.assertEqual(revisar_numero(50, 60), "mas bajo")
 
+    def test_generar_numero_range(self):
+        for _ in range(1000):
+            numero = generar_numero()
+            self.assertTrue(1 <= numero <= 100, f"Número generado fuera de rango: {numero}")
 
-    intentosRealizados = intentosRealizados + 1
-
-
-    if estimación < número:
-
-        print('Tu numero es muy bajo .') 
-
-
-
-    if estimación > número:
-
-        print('Tu es muy alto.')
-
-
-
-    if estimación == número:
-
-        break
-
-
-if estimación == número:
-
-    intentosRealizados = str(intentosRealizados)
-
-print("Has adivinado mi número en " + intentosRealizados )
-
+if __name__ == '__main__':
+    unittest.main(verbosity=2)
 
 if estimación != número:
 
