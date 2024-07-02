@@ -1,27 +1,49 @@
-import unittest
-from logica_2 import revisar_numero, generar_numero
+import logging
+import random
 
-class TestGuessingGame(unittest.TestCase):
+# Configuración del logging
+logging.basicConfig(filename='adivinanza_numero.log', level=logging.INFO,
+                    format='%(asctime)s - %(levelname)s - %(message)s')
 
-    def test_revisar_numero_correct(self):
-        self.assertEqual(revisar_numero(50, 50), "correcto")
+def generar_numero():
+    return random.randint(1, 100)
 
-    def test_revisar_numero_higher(self):
-        self.assertEqual(revisar_numero(50, 40), "mas alto")
+def revisar_numero(numero_a_adivinar, numero):
+    if numero < numero_a_adivinar:
+        return "mas alto"
+    elif numero > numero_a_adivinar:
+        return "mas bajo"
+    else:
+        return "correcto"
 
-    def test_revisar_numero_lower(self):
-        self.assertEqual(revisar_numero(50, 60), "mas bajo")
+def empezar_juego():
+    logging.info("El juego ha comenzado.")
+    numero_a_adivinar = generar_numero()
+    intentos = 0
+    adivinado = False
 
-    def test_generar_numero_range(self):
-        for _ in range(1000):
-            numero = generar_numero()
-            self.assertTrue(1 <= numero <= 100, f"Número generado fuera de rango: {numero}")
+    logging.info(f"El número a adivinar ha sido generado: {numero_a_adivinar}")
 
-if __name__ == '__main__':
-    unittest.main(verbosity=2)
+    while not adivinado:
+        try:
+            numero = int(input("Adivina el número entre 1 y 100: "))
+            intentos += 1
+            logging.info(f"Intento {intentos}: el jugador adivinó {numero}")
 
-if estimación != número:
+            resultado = revisar_numero(numero_a_adivinar, numero)
+            if resultado == "mas alto":
+                print("Más alto...")
+                logging.info("El jugador adivinó demasiado bajo.")
+            elif resultado == "mas bajo":
+                print("Más bajo...")
+                logging.info("El jugador adivinó demasiado alto.")
+            else:
+                print(f"¡Correcto! Adivinaste el número en {intentos} intentos.")
+                logging.info(f"El jugador adivinó correctamente en {intentos} intentos.")
+                adivinado = True
+        except ValueError:
+            print("Por favor, introduce un número válido.")
+            logging.error("El jugador introdujo un valor no válido.")
 
-    número = str(número)
-
-print( "no. El número que estaba pensando era " + número)
+if __name__ == "__main__":
+    empezar_juego()
