@@ -1,17 +1,17 @@
 import logging
 import random
 
+# Configuración del logging
+logging.basicConfig(filename='game.log', level=logging.INFO,
+                    format='%(asctime)s - %(levelname)s - %(message)s')
 
-logging.basicConfig(nombre_archivo='game.log', nivel=logging.INFO,
-                    format='%(activo)s - %(nombre_nivel)s - %(mensaje)s')
-
-def inisiando_juego():
+def iniciando_juego():
     logging.info("El juego ha comenzado.")
-    numeros_random = random.randint(1, 100)
+    numero_random = random.randint(1, 100)
     intentos = 0
     adivinada = False
 
-    logging.info(f"El número a adivinar ha sido generado: {numeros_random}")
+    logging.info(f"El número a adivinar ha sido generado: {numero_random}")
 
     while not adivinada:
         try:
@@ -19,10 +19,10 @@ def inisiando_juego():
             intentos += 1
             logging.info(f"Intento {intentos}: el jugador adivinó {guess}")
 
-            if guess < numeros_random:
+            if guess < numero_random:
                 print("Más alto...")
                 logging.info("El jugador adivinó demasiado bajo.")
-            elif guess > numeros_random:
+            elif guess > numero_random:
                 print("Más bajo...")
                 logging.info("El jugador adivinó demasiado alto.")
             else:
@@ -34,11 +34,7 @@ def inisiando_juego():
             logging.error("El jugador introdujo un valor no válido.")
 
 if __name__ == "__main__":
-    inisiando_juego()
-
-
-
-
+    iniciando_juego()
 
 
 
